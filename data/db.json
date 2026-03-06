@@ -19,7 +19,7 @@
       "id": "dc-superman",
       "superhero": "Superman",
       "publisher": "DC Comics",
-      "alter_ego": "Kal-El",
+      "alter_ego": "Clark Kent",
       "first_appearance": "Action Comics #1",
       "characters": "Kal-El"
     },
@@ -166,6 +166,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "t7rFEl2",
+      "superhero": "Vergil",
+      "publisher": "DC Comics",
+      "alter_ego": "Eduardo Sandoval",
+      "first_appearance": "Devil May Cry #1",
+      "characters": "Eddy, Eduardo, Edd",
+      "alt_img": "https://i.pinimg.com/736x/03/2d/a0/032da0a577e80b1abd8629f4e69d3d2d.jpg"
     }
   ]
 }
