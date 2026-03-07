@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-new-page',
   templateUrl: './new-page.component.html',
   styles: ``
 })
-export class NewPageComponent {
+export class NewPageComponent implements OnInit{
 
   // Nota: Cuando trabajamos con formularios reactivos, la mayor parte de la lógica ira en el archivo del componente y no en la plantilla
 
@@ -35,13 +37,41 @@ export class NewPageComponent {
     },
   ];
 
-  constructor( private herosService: HeroesService ) {}
+  constructor(
+    private herosService: HeroesService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   get currentHero(): Hero {
 
     const hero = this.heroForm.value as Hero;
 
     return hero;
+
+  }
+
+  // ¿Ruta para editar o para crear un héroe?
+  ngOnInit(): void {
+
+    if (!this.router.url.includes("edit")) return;
+
+    // Si estamos en la ruta para editar...
+    this.activatedRoute.params
+      .pipe(
+        switchMap( ({ id }) => this.herosService.getHeroById( id ) ),
+      )
+      .subscribe(
+        hero => {
+
+          // El héroe no existe (null), lo sacamos
+          if (!hero) return this.router.navigateByUrl("/");
+
+          // reset() tiene dos funciones, si mandamos un parámetro rellena los campos que se llamen igual que el modelo del backend
+          this.heroForm.reset( hero );
+          return;
+        }
+      )
 
   }
 
