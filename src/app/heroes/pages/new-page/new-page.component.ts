@@ -4,6 +4,7 @@ import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-page',
@@ -40,7 +41,8 @@ export class NewPageComponent implements OnInit{
   constructor(
     private herosService: HeroesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   get currentHero(): Hero {
@@ -85,7 +87,7 @@ export class NewPageComponent implements OnInit{
         .subscribe( hero => {
 
           // TODO: Mostrar snackbar
-
+          this.showSnackBar(`${hero.superhero} updated!`);
 
 
         } );
@@ -97,8 +99,14 @@ export class NewPageComponent implements OnInit{
     this.herosService.addHero( this.currentHero )
       .subscribe( hero => {
         //TODO: Mostrar snackbar, y navegar a /heroes/edit/hero.id
+        this.showSnackBar(`${hero.superhero} created!`);
+        this.router.navigate(["/heroes/edit", hero.id]);
       } );
 
+  }
+
+  showSnackBar(message: string): void {
+    this.snackBar.open(message, "done", { duration: 2500 });
   }
 
 }

@@ -72,7 +72,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Dick Grayson",
       "first_appearance": "Detective Comics #38",
-      "characters": "Dick Grayson"
+      "characters": "Dick Grayson",
+      "alt_img": null
     },
     {
       "id": "dc-blue",
@@ -178,6 +179,24 @@
       "first_appearance": "Devil May Cry #1",
       "characters": "Eddy, Eduardo, Edd",
       "alt_img": "https://i.pinimg.com/736x/03/2d/a0/032da0a577e80b1abd8629f4e69d3d2d.jpg"
+    },
+    {
+      "id": "iV5pXLK",
+      "superhero": "Mario",
+      "publisher": "DC Comics",
+      "alter_ego": "Mario Bros",
+      "first_appearance": "Super Mario Sunshine #1",
+      "characters": "Mario el fontanero",
+      "alt_img": "https://mario.nintendo.com/static/0f10f738d1f9aa8292fa7d93c35f2a07/02be2/mario.png"
+    },
+    {
+      "id": "LMVOJki",
+      "superhero": "asda",
+      "publisher": "DC Comics",
+      "alter_ego": "wwr",
+      "first_appearance": "rf",
+      "characters": "rewqgv",
+      "alt_img": "tbetger"
     }
   ]
 }
