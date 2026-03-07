@@ -1,7 +1,9 @@
 <h1>
-  Editar / Agregar
-  Héroe
-  <small>Superman</small>
+  {{ currentHero.id ? "Editar héroe" : "Agregar héroe" }}
+  <br>
+
+  <small *ngIf="currentHero.id"> {{currentHero.superhero}} </small>
+
 </h1>
 
 <mat-divider class="mb-2"></mat-divider>
@@ -62,10 +64,13 @@
 
         <div class="flex justify-content-between">
 
-          <button mat-flat-button color="warn">
+          <button *ngIf="currentHero.id"  mat-flat-button color="warn">
             <mat-icon>delete</mat-icon>
             Borrar
           </button>
+
+          <!-- Ayuda para el comportamiendo de espaciado de flexbox -->
+          <span></span>
 
           <button mat-flat-button color="primary" type="submit">
             <mat-icon>save</mat-icon>
