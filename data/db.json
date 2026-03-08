@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "usuario": "John Doe",
+      "user": "John Doe",
       "email": "john.due@gmail.com"
     }
   ],
@@ -13,8 +13,16 @@
       "publisher": "DC Comics",
       "alter_ego": "Bruce Wayne",
       "first_appearance": "Detective Comics #27",
-      "characters": "Bruce Wayne",
-      "alt_img": ""
+      "characters": "Bruce Wayne"
+    },
+    {
+      "id": "dc-superman",
+      "superhero": "Superman",
+      "publisher": "DC Comics",
+      "alter_ego": "Kal-El",
+      "first_appearance": "Action Comics #1",
+      "characters": "Kal-El",
+      "alt_img": null
     },
     {
       "id": "dc-flash",
@@ -30,8 +38,7 @@
       "publisher": "DC Comics",
       "alter_ego": "Alan Scott",
       "first_appearance": "All-American Comics #16",
-      "characters": "Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz",
-      "alt_img": null
+      "characters": "Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz"
     },
     {
       "id": "dc-arrow",
@@ -63,8 +70,7 @@
       "publisher": "DC Comics",
       "alter_ego": "Dick Grayson",
       "first_appearance": "Detective Comics #38",
-      "characters": "Dick Grayson",
-      "alt_img": null
+      "characters": "Dick Grayson"
     },
     {
       "id": "dc-blue",
@@ -161,24 +167,6 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
-    },
-    {
-      "id": "t7rFEl2",
-      "superhero": "Vergil",
-      "publisher": "DC Comics",
-      "alter_ego": "Eduardo Sandoval",
-      "first_appearance": "Devil May Cry #1",
-      "characters": "Eddy, Eduardo, Edd",
-      "alt_img": "https://i.pinimg.com/736x/03/2d/a0/032da0a577e80b1abd8629f4e69d3d2d.jpg"
-    },
-    {
-      "id": "iV5pXLK",
-      "superhero": "Mario",
-      "publisher": "DC Comics",
-      "alter_ego": "Mario Bros",
-      "first_appearance": "Super Mario Sunshine #1",
-      "characters": "Mario el fontanero",
-      "alt_img": "https://mario.nintendo.com/static/0f10f738d1f9aa8292fa7d93c35f2a07/02be2/mario.png"
     }
   ]
 }
