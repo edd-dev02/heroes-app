@@ -17,15 +17,6 @@
       "alt_img": ""
     },
     {
-      "id": "dc-superman",
-      "superhero": "Superman",
-      "publisher": "DC Comics",
-      "alter_ego": "Clark Kent",
-      "first_appearance": "Action Comics #1",
-      "characters": "Kal-El",
-      "alt_img": null
-    },
-    {
       "id": "dc-flash",
       "superhero": "Flash",
       "publisher": "DC Comics",
@@ -188,15 +179,6 @@
       "first_appearance": "Super Mario Sunshine #1",
       "characters": "Mario el fontanero",
       "alt_img": "https://mario.nintendo.com/static/0f10f738d1f9aa8292fa7d93c35f2a07/02be2/mario.png"
-    },
-    {
-      "id": "LMVOJki",
-      "superhero": "asda",
-      "publisher": "DC Comics",
-      "alter_ego": "wwr",
-      "first_appearance": "rf",
-      "characters": "rewqgv",
-      "alt_img": "tbetger"
     }
   ]
 }

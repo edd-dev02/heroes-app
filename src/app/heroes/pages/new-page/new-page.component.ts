@@ -3,15 +3,17 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { filter, switchMap, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-new-page',
   templateUrl: './new-page.component.html',
   styles: ``
 })
-export class NewPageComponent implements OnInit{
+export class NewPageComponent implements OnInit {
 
   // Nota: Cuando trabajamos con formularios reactivos, la mayor parte de la lógica ira en el archivo del componente y no en la plantilla
 
@@ -42,8 +44,9 @@ export class NewPageComponent implements OnInit{
     private herosService: HeroesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) { }
 
   get currentHero(): Hero {
 
@@ -61,7 +64,7 @@ export class NewPageComponent implements OnInit{
     // Si estamos en la ruta para editar...
     this.activatedRoute.params
       .pipe(
-        switchMap( ({ id }) => this.herosService.getHeroById( id ) ),
+        switchMap(({ id }) => this.herosService.getHeroById(id)),
       )
       .subscribe(
         hero => {
@@ -70,7 +73,7 @@ export class NewPageComponent implements OnInit{
           if (!hero) return this.router.navigateByUrl("/");
 
           // reset() tiene dos funciones, si mandamos un parámetro rellena los campos que se llamen igual que el modelo del backend
-          this.heroForm.reset( hero );
+          this.heroForm.reset(hero);
           return;
         }
       )
@@ -79,29 +82,64 @@ export class NewPageComponent implements OnInit{
 
   onSubmit(): void {
 
-    if(this.heroForm.invalid) return;
+    if (this.heroForm.invalid) return;
 
     // Si tiene id, significa que quiere actualizar un heroe existente
-    if(this.currentHero.id) {
-      this.herosService.updateHero( this.currentHero )
-        .subscribe( hero => {
+    if (this.currentHero.id) {
+      this.herosService.updateHero(this.currentHero)
+        .subscribe(hero => {
 
           // TODO: Mostrar snackbar
           this.showSnackBar(`${hero.superhero} updated!`);
 
 
-        } );
+        });
 
-        return;
+      return;
     }
 
     // Si no tiene id, significa que quiere crear un héroe nuevo
-    this.herosService.addHero( this.currentHero )
-      .subscribe( hero => {
+    this.herosService.addHero(this.currentHero)
+      .subscribe(hero => {
         //TODO: Mostrar snackbar, y navegar a /heroes/edit/hero.id
         this.showSnackBar(`${hero.superhero} created!`);
         this.router.navigate(["/heroes/edit", hero.id]);
-      } );
+      });
+
+  }
+
+  // No pedimos ningún argumento porque ya tenemos todo el objeto en el formulario
+  onDeleteHero() {
+
+    if (!this.currentHero.id) throw Error("Hero id is required");
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: this.heroForm.value,
+    });
+
+    dialogRef.afterClosed()
+      .pipe(
+        filter( (result: boolean) => result), // Si el valor es true, lo dejamos pasar
+        switchMap(() => this.herosService.deleteHeroById(this.currentHero.id)), // Cuando nos llegue un true, eliminamos
+        filter( (wasDeleted: boolean) => wasDeleted),
+      )
+      .subscribe(result => {
+        this.router.navigateByUrl("/"); // Finalmente, redirigimos
+      });
+
+    /*
+    dialogRef.afterClosed().subscribe(result => {
+
+      if( !result ) return;
+
+      this.herosService.deleteHeroById(this.currentHero.id)
+        .subscribe( wasDeleted => {
+
+          if(wasDeleted) this.router.navigateByUrl("/");
+
+        } );
+    */
+
 
   }
 

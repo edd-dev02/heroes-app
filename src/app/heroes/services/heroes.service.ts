@@ -51,9 +51,9 @@ export class HeroesService {
 
     return this.http.delete<Hero>(`${this.baseUrl}/heroes/${id}`)
       .pipe(
-        catchError( err => of(false)), // No se borró nada
-        map( resp => true ) // Si se borró el objeto, retornamos un true
-      )
+        map( resp => true ), // Si se borró el objeto, retornamos un true
+        catchError( err => of(false)), // No se borró nada - Evitar eliminar dos veces el mismo elemento
+      );
 
   }
 
